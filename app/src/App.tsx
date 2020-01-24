@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import useFetch from './hooks/useFetch';
 
 const App: React.FC = () => {
+  const [data, error, loading]: any = useFetch('notes');
+
+  if (!data) {
+    return <div>Loading...</div>
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {data.map((note: any) => (
+          <li key={note.id}>{note.title}</li>
+        ))}
+      </ul>
     </div>
   );
 }
