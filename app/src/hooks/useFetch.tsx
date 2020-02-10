@@ -17,16 +17,16 @@ const useFetch = (endpoint: string, options: Object = {}) => {
         const res = await fetch(url, options);
         const json = await res.json();
         setData(json);
-      } catch(error) {
+      } catch (error) {
         setError(error);
       } finally {
         setLoading(false);
       }
-    }
+    };
     fetchData();
   }, []);
 
   return [data, error, loading];
-}
+};
 
 export default useFetch;

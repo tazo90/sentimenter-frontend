@@ -18,7 +18,6 @@ interface Params {
   [index: string]: string;
 }
 
-
 async function request(url: string, params?: Params, method = 'GET') {
   const options: any = {
     method,
@@ -38,14 +37,16 @@ async function request(url: string, params?: Params, method = 'GET') {
     const code = response.status;
     const msg = response.data ? response.data.error : 'Server error';
 
-    throw new Error(`${code} ${msg}`)
+    throw new Error(`${code} ${msg}`);
   }
 
   return await response.json();
 }
 
 function objectToQueryString(obj: Params) {
-  return Object.keys(obj).map(key => key + '=' + obj[key]).join('&');
+  return Object.keys(obj)
+    .map(key => key + '=' + obj[key])
+    .join('&');
 }
 
 function get(url: string, params?: Params) {
@@ -68,6 +69,5 @@ export default {
   get,
   post,
   put,
-  remove
+  remove,
 };
-
