@@ -10,6 +10,7 @@ const MODELS: any = {
   en: [
     { key: 'bert', name: 'BERT' },
     { key: 'lstm', name: 'LSTM' },
+    { key: 'vader', name: 'VADER' },
   ],
   pl: [{ key: 'lstm', name: 'LSTM' }],
 };

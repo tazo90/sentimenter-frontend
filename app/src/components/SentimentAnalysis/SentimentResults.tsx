@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Card, Typography, Divider, Spin } from 'antd';
+import { Card, Typography, Divider, Spin, Tag } from 'antd';
 
 type ResultsProps = {
   isLoading: boolean;
@@ -17,22 +17,36 @@ const AlignLeftRight = styled.header`
   justify-content: space-between;
 `;
 
-const SentimentResults = ({ isLoading, results }: ResultsProps) => (
-  <Card title="Sentiment" bordered={false}>
-    <Spin spinning={isLoading} size="large" tip="Classification...">
-      <AlignLeftRight>
-        <Text strong>TAG</Text>
-        <Text strong>CONFIDENCE</Text>
-      </AlignLeftRight>
-      <Divider />
-      {results && (
+const TAG_COLOR_MAP: any = {
+  positive: 'green',
+  neutral: 'blue',
+  negative: 'red',
+};
+
+const SentimentResults = ({ isLoading, results }: ResultsProps) => {
+  return (
+    <Card title="Sentiment" bordered={false}>
+      <Spin spinning={isLoading} size="large" tip="Classification...">
         <AlignLeftRight>
-          <Text>{results.tag_name}</Text>
-          <Text>{results.score} %</Text>
+          <Text strong>TAG</Text>
+          <Text strong>CONFIDENCE</Text>
         </AlignLeftRight>
-      )}
-    </Spin>
-  </Card>
-);
+        <Divider />
+        {results && (
+          <AlignLeftRight>
+            <Text>
+              <Tag color={TAG_COLOR_MAP[results.tag_name.toLowerCase()]}>
+                <b>{results.tag_name}</b>
+              </Tag>
+            </Text>
+            <Text>
+              <b>{results.score.toPrecision(4)}%</b>
+            </Text>
+          </AlignLeftRight>
+        )}
+      </Spin>
+    </Card>
+  );
+};
 
 export default SentimentResults;
