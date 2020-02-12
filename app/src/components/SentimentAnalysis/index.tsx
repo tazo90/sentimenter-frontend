@@ -1,11 +1,11 @@
 import SentimentHeader from './SentimentHeader';
 import SentimentEditor from './SentimentEditor';
-import SentimentWordCloud from './SentimentWordCloud';
+import SentimentModelDesc from './SentimentModelDesc';
 import SentimentResults from './SentimentResults';
 
 export {
   SentimentHeader,
   SentimentEditor,
-  SentimentWordCloud,
+  SentimentModelDesc,
   SentimentResults,
 };

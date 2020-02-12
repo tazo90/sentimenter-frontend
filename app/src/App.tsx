@@ -5,7 +5,7 @@ import { Layout, Menu, Icon, Row, Col } from 'antd';
 import {
   SentimentHeader,
   SentimentEditor,
-  SentimentWordCloud,
+  SentimentModelDesc,
   SentimentResults,
 } from 'components/SentimentAnalysis';
 
@@ -76,7 +76,10 @@ const App: React.FC = () => {
                 <SentimentResults isLoading={isPending} results={data} />
               </Col>
               <Col span={9} offset={1}>
-                <SentimentWordCloud />
+                <SentimentModelDesc
+                  isLoading={isPending}
+                  modelInfo={data && data.model_info}
+                />
               </Col>
             </Row>
           </Content>

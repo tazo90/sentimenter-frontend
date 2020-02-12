@@ -3,16 +3,16 @@ import { Select } from 'antd';
 
 const { Option } = Select;
 const LANGUAGES = [
-  { key: 'en', name: 'English' },
-  { key: 'pl', name: 'Polish' },
+  { key: 'en', name: 'English', disabled: false },
+  { key: 'pl', name: 'Polish', disabled: true },
 ];
 const MODELS: any = {
   en: [
-    { key: 'bert', name: 'BERT' },
-    { key: 'lstm', name: 'LSTM' },
-    { key: 'vader', name: 'VADER' },
+    { key: 'bert', name: 'BERT', disabled: true },
+    { key: 'lstm', name: 'LSTM', disabled: false },
+    { key: 'vader', name: 'VADER', disabled: true },
   ],
-  pl: [{ key: 'lstm', name: 'LSTM' }],
+  pl: [{ key: 'lstm', name: 'LSTM', disabled: true }],
 };
 
 const SentimentSelectors = ({ onSetLanguage, onSetModel }: any) => {
@@ -39,7 +39,9 @@ const SentimentSelectors = ({ onSetLanguage, onSetModel }: any) => {
         style={{ width: 180, marginRight: 15 }}
         onChange={handleSetLanguage}>
         {LANGUAGES.map(item => (
-          <Option key={item.key}>{item.name}</Option>
+          <Option key={item.key} disabled={item.disabled}>
+            {item.name}
+          </Option>
         ))}
       </Select>
       <Select
@@ -50,7 +52,9 @@ const SentimentSelectors = ({ onSetLanguage, onSetModel }: any) => {
         onChange={handleSetModel}>
         {language &&
           MODELS[language].map((item: any) => (
-            <Option key={item.key}>{item.name}</Option>
+            <Option key={item.key} disabled={item.disabled}>
+              {item.name}
+            </Option>
           ))}
       </Select>
     </div>
