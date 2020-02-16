@@ -8,11 +8,11 @@ const LANGUAGES = [
 ];
 const MODELS: any = {
   en: [
-    { key: 'bert', name: 'BERT', disabled: true },
-    { key: 'lstm', name: 'LSTM', disabled: false },
+    { key: 'bert', name: 'BERT (92%)', disabled: false },
+    { key: 'lstm', name: 'LSTM (85%)', disabled: false },
     { key: 'vader', name: 'VADER', disabled: true },
   ],
-  pl: [{ key: 'lstm', name: 'LSTM', disabled: true }],
+  pl: [{ key: 'lstm', name: 'LSTM (85%)', disabled: true }],
 };
 
 const SentimentSelectors = ({ onSetLanguage, onSetModel }: any) => {
@@ -46,7 +46,9 @@ const SentimentSelectors = ({ onSetLanguage, onSetModel }: any) => {
       </Select>
       <Select
         showSearch={true}
-        value={model || 'Select model'}
+        mode="multiple"
+        // value={model || 'Select model'}
+        placeholder="Select model"
         disabled={language === ''}
         style={{ width: 180 }}
         onChange={handleSetModel}>
