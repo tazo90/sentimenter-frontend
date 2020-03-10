@@ -75,6 +75,7 @@ const App: React.FC = () => {
                 <SentimentResults
                   isLoading={isPending}
                   scores={(data && data.scores) || []}
+                  wordCloudUrl={data && data.word_cloud_url}
                 />
               </Col>
             </Row>
