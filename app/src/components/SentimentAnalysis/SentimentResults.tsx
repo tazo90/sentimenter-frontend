@@ -4,7 +4,6 @@ import { Card, Typography, Divider, Spin, Tag, Collapse, Icon } from 'antd';
 
 type ModelInfoProps = {
   vocab_size: number;
-  dataset: string;
   word_cloud_url: string;
 };
 
@@ -63,36 +62,14 @@ const SentimentResultsHeader = ({ score }: any) => {
 };
 
 const SentimentResultsDetails = ({ modelInfo }: any) => {
-  console.log('model', modelInfo);
   return (
     <>
-      {modelInfo.dataset && (
-        <AlignLeftRight>
-          <Text strong>Dataset</Text>
-          <Text strong>{modelInfo.dataset}</Text>
-        </AlignLeftRight>
-      )}
-      <Divider />
       {modelInfo.vocab_size && (
         <AlignLeftRight>
           <Text strong>Unique words</Text>
           <Text strong>{modelInfo.vocab_size}</Text>
         </AlignLeftRight>
       )}
-      {/* <Divider />
-      {modelInfo.word_cloud_url && (
-        <img
-          style={{
-            maxHeight: '100%',
-            minWidth: '100%',
-            textAlign: 'center',
-            width: 340,
-            height: 230,
-          }}
-          alt="Word Cloud"
-          src={modelInfo.word_cloud_url}
-        />
-      )} */}
     </>
   );
 };
@@ -112,6 +89,7 @@ const SentimentResults = ({ isLoading, scores, wordCloudUrl }: ResultsProps) => 
             return (
               <>
                 <Collapse
+                  key={score.model_name}
                   bordered={false}
                   expandIcon={({ isActive }) =>
                     score.model_info && (
@@ -131,19 +109,21 @@ const SentimentResults = ({ isLoading, scores, wordCloudUrl }: ResultsProps) => 
             );
           })
         }
-        <Divider />
         {wordCloudUrl &&
-          <img
-            style={{
-              maxHeight: '100%',
-              minWidth: '100%',
-              textAlign: 'center',
-              width: 340,
-              height: 230,
-            }}
-            alt="Word Cloud"
-            src={wordCloudUrl}
-          />
+          <>
+            <Divider />
+            <img
+              style={{
+                maxHeight: '100%',
+                minWidth: '100%',
+                textAlign: 'center',
+                width: 340,
+                height: 230,
+              }}
+              alt="Word Cloud"
+              src={wordCloudUrl}
+            />
+          </>
         }
       </Spin>
     </Card>

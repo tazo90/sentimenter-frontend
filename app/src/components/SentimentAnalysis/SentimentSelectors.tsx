@@ -13,7 +13,7 @@ const MODELS: any = {
     { key: 'lstm', name: 'LSTM (85%)', disabled: false },
     { key: 'bert', name: 'BERT (92%)', disabled: true },
   ],
-  pl: [{ key: 'lstm', name: 'LSTM (85%)', disabled: true }],
+  pl: [{ key: 'lstm', name: 'LSTM (96%)', disabled: false }],
 };
 
 const SentimentSelectors = ({ onSetLanguage, onSetModel }: any) => {
